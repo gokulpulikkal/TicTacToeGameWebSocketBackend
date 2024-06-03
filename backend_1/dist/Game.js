@@ -17,13 +17,15 @@ class Game {
         this.player1.send(JSON.stringify({
             type: Messages_1.INIT_GAME,
             payload: {
-                symbol: Messages_1.PLAYER1_SYMBOL
+                symbol: Messages_1.PLAYER1_SYMBOL,
+                isYourTurn: this.currentPlayer === this.player1
             }
         }));
         this.player2.send(JSON.stringify({
             type: Messages_1.INIT_GAME,
             payload: {
-                symbol: Messages_1.PLAYER2_SYMBOL
+                symbol: Messages_1.PLAYER2_SYMBOL,
+                isYourTurn: this.currentPlayer === this.player2
             }
         }));
     }
@@ -57,13 +59,15 @@ class Game {
             this.player1.send(JSON.stringify({
                 type: Messages_1.GAME_OVER,
                 payload: {
-                    winner: socket === this.player1 ? Messages_1.PLAYER1_SYMBOL : Messages_1.PLAYER2_SYMBOL
+                    winner: socket === this.player1 ? Messages_1.PLAYER1_SYMBOL : Messages_1.PLAYER2_SYMBOL,
+                    board: this.board,
                 }
             }));
             this.player2.send(JSON.stringify({
                 type: Messages_1.GAME_OVER,
                 payload: {
-                    winner: socket === this.player1 ? Messages_1.PLAYER1_SYMBOL : Messages_1.PLAYER2_SYMBOL
+                    winner: socket === this.player1 ? Messages_1.PLAYER1_SYMBOL : Messages_1.PLAYER2_SYMBOL,
+                    board: this.board,
                 }
             }));
             return;
@@ -72,13 +76,15 @@ class Game {
             this.player1.send(JSON.stringify({
                 type: Messages_1.GAME_OVER,
                 payload: {
-                    winner: 'Draw'
+                    winner: 'Draw',
+                    board: this.board,
                 }
             }));
             this.player2.send(JSON.stringify({
                 type: Messages_1.GAME_OVER,
                 payload: {
-                    winner: 'Draw'
+                    winner: 'Draw',
+                    board: this.board,
                 }
             }));
             return;
@@ -91,13 +97,15 @@ class Game {
         this.player1.send(JSON.stringify({
             type: Messages_1.MOVE,
             payload: {
-                board: this.board
+                board: this.board,
+                isYourTurn: this.currentPlayer === this.player1
             }
         }));
         this.player2.send(JSON.stringify({
             type: Messages_1.MOVE,
             payload: {
-                board: this.board
+                board: this.board,
+                isYourTurn: this.currentPlayer === this.player2
             }
         }));
     }

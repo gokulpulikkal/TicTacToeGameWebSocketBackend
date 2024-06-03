@@ -26,13 +26,15 @@ export class Game {
         this.player1.send(JSON.stringify({
             type: INIT_GAME,
             payload: {
-                symbol: PLAYER1_SYMBOL
+                symbol: PLAYER1_SYMBOL,
+                isYourTurn: this.currentPlayer === this.player1
             }
         }));
         this.player2.send(JSON.stringify({
             type: INIT_GAME,
             payload: {
-                symbol: PLAYER2_SYMBOL
+                symbol: PLAYER2_SYMBOL,
+                isYourTurn: this.currentPlayer === this.player2
             }
         }));
     }
@@ -72,13 +74,15 @@ export class Game {
             this.player1.send(JSON.stringify({
                 type: GAME_OVER,
                 payload: {
-                    winner: socket === this.player1 ? PLAYER1_SYMBOL : PLAYER2_SYMBOL
+                    winner: socket === this.player1 ? PLAYER1_SYMBOL : PLAYER2_SYMBOL,
+                    board: this.board,
                 }
             }));
             this.player2.send(JSON.stringify({
                 type: GAME_OVER,
                 payload: {
-                    winner: socket === this.player1 ? PLAYER1_SYMBOL : PLAYER2_SYMBOL
+                    winner: socket === this.player1 ? PLAYER1_SYMBOL : PLAYER2_SYMBOL,
+                    board: this.board,
                 }
             }));
             return;
@@ -88,13 +92,15 @@ export class Game {
             this.player1.send(JSON.stringify({
                 type: GAME_OVER,
                 payload: {
-                    winner: 'Draw'
+                    winner: 'Draw',
+                    board: this.board,
                 }
             }));
             this.player2.send(JSON.stringify({
                 type: GAME_OVER,
                 payload: {
-                    winner: 'Draw'
+                    winner: 'Draw',
+                    board: this.board,
                 }
             }));
             return;
@@ -110,13 +116,15 @@ export class Game {
         this.player1.send(JSON.stringify({
             type: MOVE,
             payload: {
-                board: this.board
+                board: this.board,
+                isYourTurn: this.currentPlayer === this.player1
             }
         }));
         this.player2.send(JSON.stringify({
             type: MOVE,
             payload: {
-                board: this.board
+                board: this.board,
+                isYourTurn: this.currentPlayer === this.player2
             }
         }));
     }

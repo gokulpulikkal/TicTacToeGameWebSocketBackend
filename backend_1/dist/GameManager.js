@@ -36,7 +36,7 @@ class GameManager {
                     game.makeMove(socket, message.move);
                 }
             }
-            if (message.type === Messages_1.REST_GAME) {
+            if (message.type === Messages_1.RESET_GAME) {
                 const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
                 if (game) {
                     game.resetGame();

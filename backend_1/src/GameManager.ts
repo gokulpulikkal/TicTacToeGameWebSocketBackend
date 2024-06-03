@@ -1,5 +1,5 @@
 import { WebSocket } from "ws";
-import { INIT_GAME, MOVE, REST_GAME } from "./Messages";
+import { INIT_GAME, MOVE, RESET_GAME } from "./Messages";
 import { Game } from "./Game";
 
 export class GameManager {
@@ -43,7 +43,7 @@ export class GameManager {
                 }
             }
 
-            if (message.type === REST_GAME) {
+            if (message.type === RESET_GAME) {
                 const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
                 if (game) {
                     game.resetGame();
