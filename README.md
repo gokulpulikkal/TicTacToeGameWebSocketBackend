@@ -14,6 +14,12 @@ This repository contains the backend for the TicTacToe Multiplayer Game, an enga
 - **WebSocket**: For real-time communication between server and clients.
 - **Node.js**: Runtime environment for executing server-side code.
 
+## Building and Running
+
+- Change directory into approporate backend
+- compile the code using  ```tsc -b```
+- run the code using command  ```node dist/index.js```
+
 ## Front-End Repository
 
 The backend for this project is implemented using TypeScript and WebSocket. You can find the backend repository here: [link](https://github.com/gokulpulikkal/TicTacToeMultiplayer)
