@@ -1,2 +1,2 @@
-package-lock.json
-node_modules/*
+backend_1/package-lock.json
+backend_1/node_modules/*
